@@ -16,7 +16,9 @@ const getData = async (key: string) => {
         return null;
     }
 }
-const saveData = async (key: string, obj: Task) => {
+const saveData = async (key: string, obj: Task[]) => {
+    console.log(obj);
+
     try {
         const jsonString = JSON.stringify(obj);
         await SInfo.setItem(key, jsonString, {});
@@ -25,6 +27,13 @@ const saveData = async (key: string, obj: Task) => {
     }
 };
 
+const removeData = async (key: string) => {
+    try {
+        await SInfo.deleteItem(key, {});
+    } catch (e) {
+        console.error('Error removing data:', e);
+    }
+};
 
 export const LoadSavedTasks = (): ThunkAction<void, RootState, unknown, any> => {
     return async (dispatch) => {
@@ -38,10 +47,19 @@ export const LoadSavedTasks = (): ThunkAction<void, RootState, unknown, any> => 
 
 export const CreateTask = (task: Task): ThunkAction<void, RootState, unknown, any> => {
     return async (dispatch) => {
-        await saveData("tasks", task)
+        // await removeData('tasks')
         const value = await getData("tasks")
         if (value) {
-            dispatch(loadTasks({ value: value }))
+            const newTasks: Task[] = [...value, task]
+            await saveData("tasks", newTasks)
+            dispatch(loadTasks({ value: newTasks }))
         }
+        else {
+            await saveData("tasks", [task])
+            dispatch(loadTasks({ value: [task] }))
+        }
+
+
+
     }
 }

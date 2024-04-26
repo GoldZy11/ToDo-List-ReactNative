@@ -13,8 +13,7 @@ export const TaskSlice = createSlice({
     reducers: {
         loadTasks: (state, { payload }) => {
             console.log(payload);
-
-            state.tasks = [...state.tasks, payload.value]
+            state.tasks = payload.value
         }
     }
 })

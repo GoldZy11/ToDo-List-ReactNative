@@ -1,5 +1,5 @@
 type Task = {
     name: string,
-    status: string,
-    deleted: string
+    status: boolean,
+    deleted: boolean
 } 
