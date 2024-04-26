@@ -4,19 +4,23 @@ import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { Screen } from 'react-native-screens'
 import { useAppDispatch } from '../Hooks/redux'
 import { CreateTask } from '../Redux/task/thunk'
+import Icon from 'react-native-vector-icons/MaterialIcons'
+import generateUniqueId from '../src/functions/generateUniqueId'
 
 export const InputTask = () => {
     const [text, setText] = useState('')
     const dispatch = useAppDispatch()
     const handleAddTask = () => {
         if (text.length > 0) {
+            const id = generateUniqueId()
             dispatch(CreateTask({
                 name: text,
                 status: false,
-                deleted: false
+                deleted: false,
+                id: id
             }))
+            setText('')
         }
-        console.log(text)
     }
     return (
         <View style={styles.inputContainer}>
@@ -26,14 +30,12 @@ export const InputTask = () => {
                 value={text}
                 onChangeText={(text) => setText(text)}
             />
+
             <TouchableOpacity
                 disabled={text.length === 0}
-                style={styles.addButton}
+                style={text.length !== 0 ? styles.addButton : styles.disabledButton}
                 onPress={handleAddTask}>
-                <Text style={styles.addButtonText}>
-                    {/* {editIndex !== -1 ? "Update Task" : "Add Task"} */}
-                    hola
-                </Text>
+                <Icon name={'add'} size={24} color="white" />
             </TouchableOpacity>
         </View>
 
@@ -51,10 +53,14 @@ const styles = StyleSheet.create({
         height: 50,
     },
     addButton: {
-        backgroundColor: "green",
+        backgroundColor: "#268cff",
+        borderRadius: 25,
         padding: 10,
-        borderRadius: 5,
-        marginBottom: 10,
+    },
+    disabledButton: {
+        backgroundColor: "#e0e0e0",
+        borderRadius: 25,
+        padding: 10,
     },
     addButtonText: {
         color: "white",
