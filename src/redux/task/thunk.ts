@@ -70,15 +70,16 @@ export const ChangueStatus = (id: string, status: boolean): ThunkAction<void, Ro
             await saveData("tasks", tasks)
             dispatch(loadTasks({ value: tasks }))
         }
+    }
+}
 
-        // if (task) {
-        //     const newTasks: Task[] = [...value, task]
-        //     await saveData("tasks", newTasks)
-        //     dispatch(loadTasks({ value: newTasks }))
-        // }
-        // else {
-        //     await saveData("tasks", [task])
-        //     dispatch(loadTasks({ value: [task] }))
-        // }
+export const DeleteTask = (id: string): ThunkAction<void, RootState, unknown, any> => {
+    return async (dispatch) => {
+        const tasks: Task[] = await getData("tasks")
+        if (tasks) {
+            let newTasksList = tasks.filter(item => item.id !== id)
+            await saveData("tasks", newTasksList)
+            dispatch(loadTasks({ value: newTasksList }))
+        }
     }
 }
