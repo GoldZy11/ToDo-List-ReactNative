@@ -58,8 +58,27 @@ export const CreateTask = (task: Task): ThunkAction<void, RootState, unknown, an
             await saveData("tasks", [task])
             dispatch(loadTasks({ value: [task] }))
         }
+    }
+}
 
+export const ChangueStatus = (id: string, status: boolean): ThunkAction<void, RootState, unknown, any> => {
+    return async (dispatch) => {
+        const tasks: Task[] = await getData("tasks")
+        if (tasks) {
+            let taskIndex = tasks.findIndex(item => item.id === id)
+            tasks[taskIndex].status = status
+            await saveData("tasks", tasks)
+            dispatch(loadTasks({ value: tasks }))
+        }
 
-
+        // if (task) {
+        //     const newTasks: Task[] = [...value, task]
+        //     await saveData("tasks", newTasks)
+        //     dispatch(loadTasks({ value: newTasks }))
+        // }
+        // else {
+        //     await saveData("tasks", [task])
+        //     dispatch(loadTasks({ value: [task] }))
+        // }
     }
 }

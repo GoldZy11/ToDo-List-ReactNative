@@ -10,7 +10,7 @@ import AnimatedListItem from '../Components/AnimatedListItem'
 
 export const ToDoList = () => {
     const dispatch = useAppDispatch()
-    const { tasks } = useAppSelector((state: any) => state.task)
+    const { tasks } = useAppSelector((state) => state.task)
     const viewableItems = useSharedValue<ViewToken[]>([]);
     let isNewItem = useRef(true);
 
@@ -29,35 +29,26 @@ export const ToDoList = () => {
                     viewableItems.value = vItems;
                 }}
                 showsVerticalScrollIndicator={false}
-                data={tasks}
+                data={tasks.filter((item) => !item.status)}
                 contentContainerStyle={styles.flatlistContainer}
+                renderItem={({ item, index }) => {
+                    return (
+                        <AnimatedListItem
+                            key={item?.id}
+                            viewableItems={viewableItems}
+                            item={item}
+                        >
+                            <TaskComponent
+                                task={item}
+                                index={index}
+                                isNewItem={isNewItem}
+                            />
+                        </AnimatedListItem>
+                    )
 
-                renderItem={({ item, index }) => (
-                    <AnimatedListItem
-                        key={item?.id}
-                        viewableItems={viewableItems}
-                        item={item}
-                    >
-                        <TaskComponent
-                            task={item}
-                            index={index}
-                            isNewItem={isNewItem}
-                        />
-                    </AnimatedListItem>
-                )}
+                }}
                 keyExtractor={(item) => item.id?.toString()}
             />
-            {/* <ScrollView>
-
-                {
-                    tasks.map((task: Task, zIndex: number) => {
-                        return (
-                            <TaskComponent task={task} key={zIndex} />
-
-                        )
-                    })
-                }
-            </ScrollView> */}
             <InputTask />
         </View>
     )
