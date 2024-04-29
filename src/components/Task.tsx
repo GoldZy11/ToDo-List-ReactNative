@@ -44,15 +44,12 @@ export const TaskComponent = ({ task, index, isNewItem }: { task: Task, index: n
     return (
         <Animated.View style={[style.container, animatedStyles]}>
             <TouchableOpacity onPress={toggleCheckbox} style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-                <Icon name={checked ? 'check-box' : 'check-box-outline-blank'} size={24} color="black" />
+                <Icon name={checked ? 'check-box' : 'check-box-outline-blank'} size={24} color="#4d4d4d" />
                 <Text style={[style.titleTask, checked && style.checkedText]}>{task.name}</Text>
             </TouchableOpacity>
             <View style={style.buttonsContainer}>
-                <TouchableOpacity onPress={() => console.log('Editar')} style={style.button}>
-                    <Icon name={'edit'} size={24} color="#268cff" />
-                </TouchableOpacity>
                 <TouchableOpacity onPress={handleDelete} style={style.button}>
-                    <Icon name={'delete'} size={24} color="#b80c0c" />
+                    <Icon name={'delete'} size={24} color="#4d4d4d" />
                 </TouchableOpacity>
 
             </View>
