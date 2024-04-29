@@ -26,6 +26,11 @@ npm run android
 # o usando Yarn
 yarn android
 ```
+> Tambien esta la opcion de correr la app ya buildeada instalando el archivo ToDoList.apk o corriendo el comando:
+
+```bash
+npm run android -- --mode="release"
+```
 
 ### Para iOS
 
