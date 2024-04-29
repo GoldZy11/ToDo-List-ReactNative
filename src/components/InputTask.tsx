@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native'
 import { FlatList, TouchableOpacity } from 'react-native-gesture-handler'
 import { Screen } from 'react-native-screens'
-import { useAppDispatch } from '../Hooks/redux'
-import { CreateTask } from '../Redux/task/thunk'
+import { useAppDispatch } from '../hooks/redux'
+import { CreateTask } from '../redux/task/thunk'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import generateUniqueId from '../src/functions/generateUniqueId'
+import generateUniqueId from '../functions/generateUniqueId'
 
 export const InputTask = () => {
     const [text, setText] = useState('')

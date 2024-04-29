@@ -2,8 +2,8 @@ import React, { MutableRefObject, useEffect, useState } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { useAppDispatch } from '../Hooks/redux';
-import { ChangueStatus } from '../Redux/task/thunk';
+import { useAppDispatch } from '../hooks/redux';
+import { ChangueStatus } from '../redux/task/thunk';
 
 //Componente que contiene la informacion de una tarea, ademas de las acciones posibles a realizar
 export const TaskComponent = ({ task, index, isNewItem }: { task: Task, index: number, isNewItem: MutableRefObject<boolean> }) => {

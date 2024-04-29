@@ -1,8 +1,8 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import React from 'react'
 import { NavigationContainer } from '@react-navigation/native';
-import { ToDoList } from '../Views/ToDoList';
-import { DeletedList } from '../Views/DeletedList';
+import { ToDoList } from '../views/ToDoList';
+import { DeletedList } from '../views/DeletedList';
 
 export const Drawer = () => {
     const Drawer = createDrawerNavigator();

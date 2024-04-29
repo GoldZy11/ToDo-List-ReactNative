@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from 'react'
 import { FlatList, ScrollView, StyleSheet, Text, View, ViewToken } from 'react-native'
-import { useAppDispatch, useAppSelector } from '../Hooks/redux'
-import { LoadSavedTasks } from '../Redux/task/thunk'
-import { InputTask } from '../Components/InputTask'
+import { LoadSavedTasks } from '../redux/task/thunk'
+import { InputTask } from '../components/InputTask'
 import { Screen } from 'react-native-screens'
-import { TaskComponent } from '../Components/Task'
+import { TaskComponent } from '../components/Task'
 import Animated, { useSharedValue } from 'react-native-reanimated'
-import AnimatedListItem from '../Components/AnimatedListItem'
+import AnimatedListItem from '../components/AnimatedListItem'
+import { useAppDispatch, useAppSelector } from '../hooks/redux'
 
 export const ToDoList = () => {
     const dispatch = useAppDispatch()
