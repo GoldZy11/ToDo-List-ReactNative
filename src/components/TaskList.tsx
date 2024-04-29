@@ -48,7 +48,10 @@ export const TaskList = ({ status }: { status: boolean }) => { // Status sera el
                 }}
                 keyExtractor={(item) => item.id?.toString()}
             />
-            <InputTask />
+            {
+                !status &&
+                <InputTask />
+            }
         </View>
     )
 }

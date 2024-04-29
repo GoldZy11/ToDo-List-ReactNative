@@ -1,6 +1,6 @@
 import React, { MutableRefObject, useEffect, useState } from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-import Animated, { useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated';
+import Animated, { useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useAppDispatch } from '../hooks/redux';
 import { ChangueStatus, DeleteTask } from '../redux/task/thunk';
@@ -19,15 +19,19 @@ export const TaskComponent = ({ task, index, isNewItem }: { task: Task, index: n
     };
 
     const handleDelete = () => {
-        dispatch(DeleteTask(task.id))
+        translateX.value += 800;
+        setTimeout(() => {
+            dispatch(DeleteTask(task.id))
+        }, 500);
     }
 
+    const translateX = useSharedValue(0);
     const scale = useSharedValue(index === 0 && isNewItem.current ? 0.5 : 1);
     const opacity = useSharedValue(index === 0 && isNewItem.current ? 0 : 1);
 
     const animatedStyles = useAnimatedStyle(() => {
         return {
-            transform: [{ scale: scale.value }],
+            transform: [{ scale: scale.value }, { translateX: withSpring(translateX.value * 2) }],
             opacity: opacity.value,
         };
     });

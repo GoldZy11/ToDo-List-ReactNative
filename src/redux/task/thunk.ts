@@ -17,8 +17,6 @@ const getData = async (key: string) => {
     }
 }
 const saveData = async (key: string, obj: Task[]) => {
-    console.log(obj);
-
     try {
         const jsonString = JSON.stringify(obj);
         await SInfo.setItem(key, jsonString, {});
