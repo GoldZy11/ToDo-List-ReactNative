@@ -1,79 +1,67 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Instrucciones de instalación
 
-# Getting Started
+## Paso 1: Metro Server
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
-
-## Step 1: Start the Metro Server
-
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
-
-To start Metro, run the following command from the _root_ of your React Native project:
+Si es que se utilizara algun emulador junto a Metro, esos son los comandos a correr
 
 ```bash
-# using npm
+# intalar librerias
+npm install
+
+# correr el servidor con npm
 npm start
 
-# OR using Yarn
+# o usando yarn
 yarn start
 ```
 
-## Step 2: Start your Application
+## Paso 2: Seleccionar OS
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+### Para Android
 
 ```bash
-# using npm
+# usando npm
 npm run android
 
-# OR using Yarn
+# o usando Yarn
 yarn android
 ```
-
-### For iOS
+> Tambien esta la opcion de correr la app ya buildeada instalando el archivo ToDoList.apk o corriendo el comando:
 
 ```bash
-# using npm
+npm run android -- --mode="release"
+```
+
+### Para iOS
+
+```bash
+# usando npm
 npm run ios
 
-# OR using Yarn
+# o usando Yarn
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+# Instrucciones de uso
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+El App es un simple To Do list, donde se pueden crear, eliminar y cambiar el estado de tareas.
 
-## Step 3: Modifying your App
+Las tareas que no esten maracadas como finalizadas se podran ver en la vista principal llamada "List", y las tareas ya finalizadas se encuentran en la seccion "Done List". En ambos casos las tareas pueden ser eliminadas con el icono de basurero ubicado al final de cada tarea.
 
-Now that you have successfully run the app, let's modify it.
+## Vista To Do list
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+![Vista de la lista](./img/List%20view.png)
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+Dentro de esta vista se observa una tarea de prueba, junto a su checkbox para cambiar el estado de la tarea y el botón de eliminar. Al final del todo se ubica el input para agregar una nueva tarea a la lista. El botón se encuentra deshabilitado mientras no exista texto.
 
-## Congratulations! :tada:
+![Vista de la lista, boton on](./img/Lista%20Vista%20con%20boton%20habilitado.png)
 
-You've successfully run and modified your React Native App. :partying_face:
+Cuando marque el check de una tarea, esta se mostrara tachada por 1 segundo y se movera hacia el listado de Done.
 
-### Now what?
+![Vista de la lista, check](./img/Lista%20vista%20check.png)
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## Vista Done list
 
-# Troubleshooting
+![Vista Done List](img/Done%20List.png)
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+En esta vista se mostraran todas las tareas ya marcadas como listas, en caso de que se requiera desmarcar una tarea solo oprima nuevamente la tarea.
